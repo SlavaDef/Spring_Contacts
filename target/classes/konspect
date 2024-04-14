@@ -1,0 +1,26 @@
+pom:
+
+spring-boot-starter-web - залежність для вебу
+spring-boot-starter-data-jpa - залежність для spring data
+jstl - залежність ніби продвинуте використання jsp
+tomcat-embed-jasper - залежність/процессор jsp сторінок частина урізаного томкету яка не включається у спрінг
+
+aplication.property:
+
+sp7 - створити базу
+spring.jpa.show-sql=true - в логах відображаються запити
+spring.jpa.properties.hibernate.format_sql=true - запити будуть з переносами не в строчку
+spring.mvc.view.prefix=/WEB-INF/pages/ - назва катологу де воляються jsp треба бо ми використовуємо не тімліф який майже вбудований
+spring.mvc.view.suffix=.jsp - розширення цих сторінок
+в ststic зазвичай кладемо картинки
+
+@Configuration
+
+конфіги для проєкту клас реалізує WebMvcConfigurer
+@Bean public CommandLineRunner - якщо спрінг бачить бін з ранером то такі методи виконуються на початку -
+запуску в цьому методі вже доступні всі репо і всі сервіси
+метод demo створює рендомні контакти
+реалізуємо метод addResourceHandlers інтерфейсу WebMvcConfigurer який реалізуємо, це ніби спосіб повпливати на
+налаштування спрінга за замовчуванням кажемо де шукати стат файли
+
+
