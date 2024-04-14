@@ -77,6 +77,11 @@ public class ContactService {
     }
 
     @Transactional
+    public void deleteGroup(Group group) {
+        groupRepository.delete(group);
+    }
+
+    @Transactional
     public void reset() {
         groupRepository.deleteAll();
         contactRepository.deleteAll();

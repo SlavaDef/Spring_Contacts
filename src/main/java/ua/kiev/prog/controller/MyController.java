@@ -85,11 +85,26 @@ public class MyController {
     }
 
     @PostMapping(value = "/search")
-    public String search(@RequestParam String pattern, Model model) {
+    public String search(@RequestParam String pattern,
+                         @RequestParam(required = false, defaultValue = "0") Integer page, Model model) {
+        if (page < 0) page = 0;
         model.addAttribute("groups", contactService.findGroups());
-        model.addAttribute("contacts", contactService.findByPattern(pattern, null /* HW */));
+        model.addAttribute("allPages", getPageCount());
+        model.addAttribute("contacts", contactService.findByPattern(pattern,
+                PageRequest.of(page, ITEMS_PER_PAGE, Sort.Direction.DESC, "id") /* HW */));
 
         return "index";
+    }
+
+    @GetMapping("/group/delete")
+    public String groupDel() {
+        return "group_delete";
+    }
+
+    @PostMapping("/group/delete/{groupId}")
+    public String deleteGroup(@PathVariable(value = "groupId") long groupId) {
+        contactService.deleteGroup(contactService.findGroup(groupId));
+        return "redirect:/";
     }
 
     @PostMapping(value = "/contact/delete")
