@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color:rebeccapurple;">
 <div class="container">
-    <form role="form" class="form-horizontal" action="/group/delete/{groupId}" method="post">
-        <div class="form-group"><h3>Delete grop</h3></div>
+    <form role="form" class="form-horizontal" action="/group/delete" method="post">
+        <div class="form-group"><h3 style="font-family:'Comic Sans MS';">Delete grop</h3></div>
         <div class="form-group"><input type="text" class="form-control" name="name" placeholder="Name"></div>
         <div class="form-group"><input type="submit" class="btn btn-primary" value="Delete"></div>
     </form>

@@ -8,6 +8,7 @@ import ua.kiev.prog.models.Group;
 import ua.kiev.prog.repo.ContactRepository;
 import ua.kiev.prog.repo.GroupRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 // c -> s -> r -> DB
@@ -77,8 +78,11 @@ public class ContactService {
     }
 
     @Transactional
-    public void deleteGroup(Group group) {
-        groupRepository.delete(group);
+    public void deleteGroup(String name) {
+       // groupRepository.deleteById(id);
+       // groupRepository.findByName(name);
+        groupRepository.delete(groupRepository.findGroupByName(name));
+
     }
 
     @Transactional

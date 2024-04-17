@@ -101,9 +101,9 @@ public class MyController {
         return "group_delete";
     }
 
-    @PostMapping("/group/delete/{groupId}")
-    public String deleteGroup(@PathVariable(value = "groupId") long groupId) {
-        contactService.deleteGroup(contactService.findGroup(groupId));
+    @PostMapping("/group/delete")
+    public String deleteGroup(@RequestParam(value = "name") String name) {
+        contactService.deleteGroup(name);
         return "redirect:/";
     }
 

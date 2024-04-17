@@ -2,26 +2,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Prog.kiev.ua</title>
+        <title>Kiev.ua</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
 
-    <body>
-        <div class="container">
-           <h3><img height="50" width="55" src="<c:url value="/static/1.png"/>"/><a href="/">Contacts List</a></h3>
+    <body  style="background-color:gold;"> <!-- колір фону-->
+        <div class="container" style="background-color:gold;">
+            <!-- style="font-family:'Comic Sans MS';" додав шрифт для напису -->
+           <h3 style="font-family:'Comic Sans MS';"> <img height="50" width="55" src="<c:url value="/static/1.png"/>"/><a href="/">Contacts List</a></h3>
 
             <nav class="navbar navbar-default">
-                <div class="container-fluid">
+                <div class="container-fluid" style="background-color:gold;">
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background-color:gold;">
                         <ul id="groupList" class="nav navbar-nav">
-                            <li><button type="button" id="add_contact" class="btn btn-default navbar-btn">Add Contact</button></li>
-                            <li><button type="button" id="add_group" class="btn btn-default navbar-btn">Add Group</button></li>
-                            <li><button type="button" id="delete_contact" class="btn btn-default navbar-btn">Delete Contact</button></li>
-                            <li><button type="button" id="delete_group" class="btn btn-default navbar-btn">Delete group</button></li>
-                            <li><button type="button" id="reset" class="btn btn-default navbar-btn">Reset</button></li>
+                            <li style="font-family:'Comic Sans MS';"><button type="button" id="add_contact" class="btn btn-primary">Add Contact</button></li>
+                            <li style="font-family:'Comic Sans MS';"><button type="button" id="add_group" class="btn btn-primary">Add Group</button></li>
+                            <li style="font-family:'Comic Sans MS';"><button type="button" id="delete_contact" class="btn btn-primary">Delete Contact</button></li>
+                            <li style="font-family:'Comic Sans MS';"><button type="button" id="delete_group" class="btn btn-primary">Delete group</button></li>
+                            <li style="font-family:'Comic Sans MS';"><button type="button" id="reset" class="btn btn-primary">Reset</button></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groups <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -36,7 +37,7 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" name="pattern" placeholder="Search">
                             </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
@@ -101,6 +102,9 @@
 
             $('#reset').click(function(){
                 window.location.href='/reset';
+            });
+            $('#delete_group').click(function(){
+                window.location.href='/group/delete';
             });
 
             $('#delete_contact').click(function(){
