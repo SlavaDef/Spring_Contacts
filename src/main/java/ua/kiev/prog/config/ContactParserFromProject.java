@@ -12,13 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ContactParser {
+public class ContactParserFromProject {
 
    Group group2 = new Group();
 
 
-
-    public ContactParser() {
+    public ContactParserFromProject() {
     }
 
     // метод для зчитування директорії

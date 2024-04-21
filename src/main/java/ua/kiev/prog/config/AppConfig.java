@@ -29,7 +29,7 @@ public class AppConfig implements WebMvcConfigurer {
             public void run(String... strings) throws Exception {
                 Group group = new Group("Test");
                 Contact contact;
-                ContactParser test = new ContactParser();
+                ContactParserFromProject test = new ContactParserFromProject();
                 contactService.addGroup(group);
 
               /*  for (int i = 0; i < 13; i++) {

@@ -3,6 +3,7 @@ package ua.kiev.prog.servise;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.kiev.prog.config.JsonParser;
 import ua.kiev.prog.models.Contact;
 import ua.kiev.prog.models.Group;
 import ua.kiev.prog.repo.ContactRepository;
@@ -42,17 +43,17 @@ public class ContactService {
             contactRepository.deleteById(id);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Group> findGroups() {
         return groupRepository.findAll();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Contact> findAll(Pageable pageable) {
         return contactRepository.findAll(pageable).getContent();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Contact> findByGroup(Group group, Pageable pageable) {
         return contactRepository.findByGroup(group, pageable);
     }
@@ -62,25 +63,26 @@ public class ContactService {
         return contactRepository.countByGroup(group);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Contact> findByPattern(String pattern, Pageable pageable) {
         return contactRepository.findByPattern(pattern, pageable);
     }
+
     // підрахунок всіх обьектів
     @Transactional(readOnly = true)
     public long count() {
         return contactRepository.count();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public Group findGroup(long id) {
         return groupRepository.findById(id).get();
     }
 
     @Transactional
     public void deleteGroup(String name) {
-       // groupRepository.deleteById(id);
-       // groupRepository.findByName(name);
+        // groupRepository.deleteById(id);
+        // groupRepository.findByName(name);
         groupRepository.delete(groupRepository.findGroupByName(name));
 
     }
@@ -95,9 +97,18 @@ public class ContactService {
 
         addGroup(group);
 
-        for (int i = 0; i < 13; i++) {
+        /*  for (int i = 0; i < 13; i++) {
             contact = new Contact(null, "Name" + i, "Surname" + i, "1234567" + i, "user" + i + "@test.com");
             addContact(contact);
+        } */
+        JsonParser parser = new JsonParser();
+        Group group1 = parser.parse();
+        addGroup(group1);
+        List<Contact> contacts = parser.contactList;
+        for (Contact contac : contacts) {
+            Contact contact1 = new Contact(group1, contac.getName(), contac.getSurname(),
+                    contac.getPhone(), contac.getEmail());
+            addContact(contact1);
         }
         for (int i = 0; i < 10; i++) {
             contact = new Contact(group, "Other" + i, "OtherSurname" + i, "7654321" + i, "user" + i + "@other.com");
