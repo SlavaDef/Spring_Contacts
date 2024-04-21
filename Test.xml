@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <contact>
+
+        <element>
+            <name>Kail</name>
+            <surname>Proflovski</surname>
+            <phone>099883456</phone>
+            <email>Kail@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Bob</name>
+            <surname>Adams</surname>
+            <phone>044553320</phone>
+            <email>Bob@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Jon</name>
+            <surname>D</surname>
+            <phone>0678932765</phone>
+            <email>Jon@gmail.com</email>
+        </element>
+
+    </contact>
+

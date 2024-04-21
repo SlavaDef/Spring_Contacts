@@ -9,6 +9,8 @@ import ua.kiev.prog.models.Contact;
 import ua.kiev.prog.models.Group;
 import ua.kiev.prog.servise.ContactService;
 
+import java.util.List;
+
 // DB -> JDBC -> JPA(H): E..E -> DAO..DAO / Repository -> S..S -> C...C -> DTO -> View / React / Vue
 
 @Configuration
@@ -27,13 +29,21 @@ public class AppConfig implements WebMvcConfigurer {
             public void run(String... strings) throws Exception {
                 Group group = new Group("Test");
                 Contact contact;
-
+                ContactParser test = new ContactParser();
                 contactService.addGroup(group);
 
-                for (int i = 0; i < 13; i++) {
+              /*  for (int i = 0; i < 13; i++) {
                     contact = new Contact(null, "Name" + i, "Surname" + i, "1234567" + i, "user" + i + "@test.com");
                     contactService.addContact(contact);
+                } */
+
+                List<Contact> contacts = test.parseContacts(test.getContactNode(test.buildDocument()));
+                contactService.addGroup(test.group2);
+                for (Contact c : contacts) {
+                    contact = new Contact(test.group2, c.getName(),c.getSurname(),c.getPhone(),c.getEmail());
+                    contactService.addContact(contact);
                 }
+
                 for (int i = 0; i < 10; i++) {
                     contact = new Contact(group, "Other" + i, "OtherSurname" + i, "7654321" + i, "user" + i + "@other.com");
                     contactService.addContact(contact);

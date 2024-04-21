@@ -28,6 +28,13 @@ public class Contact {
         this.email = email;
     }
 
+    public Contact(String name, String surname, String phone, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }
@@ -74,5 +81,17 @@ public class Contact {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", group=" + group +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

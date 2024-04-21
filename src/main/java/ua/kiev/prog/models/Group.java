@@ -16,6 +16,7 @@ public class Group {
     @OneToMany(mappedBy="group", cascade=CascadeType.ALL) // каскад зміни в групі відображаються на контактах
     private List<Contact> contacts = new ArrayList<Contact>();
 
+
     public Group() {}
 
     public Group(String name) {
@@ -44,5 +45,13 @@ public class Group {
 
     public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
