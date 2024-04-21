@@ -15,10 +15,11 @@ public class JsonParser {
 
     private static final String GROUP_NAME = "name";
     private static final String CONTACTS_ARR = "contacts";
-    public List<Contact> contactList = new ArrayList<>();
+    // public List<Contact> contactList = new ArrayList<>();
 
-    public Group parse() {
+    public List<Contact> parse() {
         Group group = new Group();
+        List<Contact> contactList = new ArrayList<>();
         JSONParser parser = new JSONParser(); // залежність json-simple
 
         try (FileReader fr = new FileReader("Contacts.json")) {
@@ -26,20 +27,20 @@ public class JsonParser {
             String groupName = (String) groupObject.get(GROUP_NAME); // отримали імя групи groupObject.get
 
             JSONArray contacts = (JSONArray) groupObject.get(CONTACTS_ARR); // JSONArray отримали масив контактів
-            
+            group.setName(groupName);
             for (Object contact : contacts) { // для кожного обьекту з масива контактів
                 JSONObject contactObject = (JSONObject) contact; // тут один із 5 обектів
                 String nameCon = (String) contactObject.get("name");
                 String surname = (String) contactObject.get("surname");
                 String phone = (String) contactObject.get("phone");
                 String email = (String) contactObject.get("email");
-                Contact contact1 = new Contact(nameCon, surname, phone, email);
+                Contact contact1 = new Contact(group, nameCon, surname, phone, email);
                 contactList.add(contact1);
 
             }
-            group.setName(groupName);
+
             // group.setContacts(contactList);
-            return group;
+            return contactList;
 
         } catch (Exception e) {
             System.out.println("Parsing error" + e);

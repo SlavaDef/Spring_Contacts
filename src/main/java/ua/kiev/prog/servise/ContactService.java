@@ -102,9 +102,9 @@ public class ContactService {
             addContact(contact);
         } */
         JsonParser parser = new JsonParser();
-        Group group1 = parser.parse();
+        Group group1 = parser.parse().get(1).getGroup();
         addGroup(group1);
-        List<Contact> contacts = parser.contactList;
+        List<Contact> contacts = parser.parse();
         for (Contact contac : contacts) {
             Contact contact1 = new Contact(group1, contac.getName(), contac.getSurname(),
                     contac.getPhone(), contac.getEmail());

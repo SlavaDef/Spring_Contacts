@@ -137,6 +137,11 @@ public class MyController {
         return "redirect:/";
     }
 
+    @GetMapping("/xml")
+    public String xml() {
+        return "contacts22";
+    }
+
     private long getPageCount() { // метод рахує скільки треба сторінок
         long totalCount = contactService.count();
         return (totalCount / ITEMS_PER_PAGE) + ((totalCount % ITEMS_PER_PAGE > 0) ? 1 : 0);
