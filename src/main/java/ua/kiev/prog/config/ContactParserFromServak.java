@@ -11,17 +11,21 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactParserFromServak {
 
     Group group2 = new Group();
 
-    private static final String CONTAKTS_URL = "https://drive.google.com/file/d/1ktx3fgvHQJ320onMw70vdaglZ1IK-WpJ/view?usp=sharing";
-
-    public String buildDocument() throws Exception {
+    private static final String CONTAKTS_URL = "https://iportal.com.ua/wp-content/uploads/Contacts.xml";
+    private static final String CONTAKTS_URL2 = "https://senior-pomidor.com.ua/Contacts25.xml";
+    List<String> red = new ArrayList<>();
+    // метод зчитає з сайту xml файл і запише все у String чи StringBuilder
+    public String readerXml() throws Exception {
         String res = null;
-        URL url = new URL(CONTAKTS_URL);
+        URL url = new URL(CONTAKTS_URL2);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
 
@@ -29,7 +33,9 @@ public class ContactParserFromServak {
                 (new InputStreamReader(conn.getInputStream()))) {
             // StringBuilder result = new StringBuilder();
             for (String line; (line = reader.readLine()) != null; ) {
+                red.add(line);
                 res += line;
+             //   System.out.println(line);
                 //  result.append(line);
             }
             //  res = result.toString();
@@ -41,7 +47,7 @@ public class ContactParserFromServak {
         //  return dbFactory.newDocumentBuilder().parse(file);
     }
 
-    /*   public List<Contact> parseContacts(Node contactsNode) {
+       public List<Contact> parseContacts(Node contactsNode) {
            List<Contact> contacts = new ArrayList<>();
            NodeList contactList = contactsNode.getChildNodes();
            // цей фор проходить всередині контактів і отримує всю інфу про поля контактів
@@ -139,46 +145,27 @@ public class ContactParserFromServak {
 
            return contactNode;
        }
-   */
+
+    public  Document buildDocument() throws Exception {
+
+        File file = new File(readerXml());
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        return dbFactory.newDocumentBuilder().parse(file);
+    }
+
     public static void main(String[] args) throws Exception {
         ContactParserFromServak contactParser = new ContactParserFromServak();
+        contactParser.readerXml();
+        List<String> set = contactParser.red;
+        System.out.println(set);
+      //  List<Contact> contactList = contactParser.parseContacts(contactParser.getContactNode(contactParser.buildDocument()));
+      //  System.out.println(contactList);
+
         //  List<Contact> contacts = contactParser.parseContacts(contactParser.getContactNode(contactParser.buildDocument()));
         // System.out.println(contacts);
 
         //  System.out.println(contactParser.buildDocument());
 
-        InputStream inputStream = null;
-        FileOutputStream outputStream = null;
 
-        try {
-            URL url = new URL(CONTAKTS_URL);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            int responseCode = conn.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                inputStream = conn.getInputStream();
-
-                File file = new File("contacts3.json"); // новий файл куди записуємо
-                outputStream = new FileOutputStream(file);
-
-                int bytesRead = -1; // -1 це кінець файлу зчитуємо дані по 1мб
-                byte[] buffer = new byte[1024];
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-            }
-            //  conn.setRequestMethod("GET");
-
-        } catch (IOException e) {
-            System.out.println("Internet connection error" + e.toString());
-        } finally {
-            try {
-                inputStream.close();
-                outputStream.close();
-            } catch (IOException e) {
-                System.out.println("Error closing input stream" + e.toString());
-            }
-
-        }
     }
 }

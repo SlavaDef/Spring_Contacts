@@ -6,7 +6,9 @@ import org.json.simple.parser.JSONParser;
 import ua.kiev.prog.models.Contact;
 import ua.kiev.prog.models.Group;
 
-import java.io.FileReader;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +17,16 @@ public class JsonParser {
 
     private static final String GROUP_NAME = "name";
     private static final String CONTACTS_ARR = "contacts";
+
     // public List<Contact> contactList = new ArrayList<>();
 
+// метод читає json фаіл з самого проєкту далі створюємо обьект контакт з отриманими полями
     public List<Contact> parse() {
         Group group = new Group();
         List<Contact> contactList = new ArrayList<>();
         JSONParser parser = new JSONParser(); // залежність json-simple
 
-        try (FileReader fr = new FileReader("Contacts.json")) {
+        try (FileReader fr = new FileReader("Contacts.json")) { // reading from file
             JSONObject groupObject = (JSONObject) parser.parse(fr);
             String groupName = (String) groupObject.get(GROUP_NAME); // отримали імя групи groupObject.get
 
@@ -47,4 +51,5 @@ public class JsonParser {
         }
         return null;
     }
+
 }

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<group>
+    <name>Student group</name>
+    <contact>
+
+        <element>
+            <name>Alis</name>
+            <surname>Stifler</surname>
+            <phone>099883256</phone>
+            <email>Stif@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Bob</name>
+            <surname>Tomson</surname>
+            <phone>044553520</phone>
+            <email>BobT@gmail.com</email>
+        </element>
+
+        <element>
+            <name>John</name>
+            <surname>Davids</surname>
+            <phone>0678932722</phone>
+            <email>JonD@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Kate</name>
+            <surname>Midelton</surname>
+            <phone>06789325502</phone>
+            <email>Kat_s@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Sid</name>
+            <surname>Tineger</surname>
+            <phone>0988952864</phone>
+            <email>Sid_troll@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Henry</name>
+            <surname>Second</surname>
+            <phone>06989525588</phone>
+            <email>Ol_bigs@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Jordan</name>
+            <surname>Enstein</surname>
+            <phone>0998743331</phone>
+            <email>Jordan@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Bobby</name>
+            <surname>Abracham</surname>
+            <phone>0662334400</phone>
+            <email>B_Ab@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Paylito</name>
+            <surname>Gonsales</surname>
+            <phone>0887432263</phone>
+            <email>Paylito@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Sam</name>
+            <surname>Down</surname>
+            <phone>0604496872</phone>
+            <email>Sam_onlk@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Ann</name>
+            <surname>Baby</surname>
+            <phone>0987758815</phone>
+            <email>Ann_Duy@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Ken</name>
+            <surname>Barby</surname>
+            <phone>0988743122</phone>
+            <email>Ken@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Barby</name>
+            <surname>Teacher</surname>
+            <phone>0662354450</phone>
+            <email>Barby@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Pablo</name>
+            <surname>Escobar</surname>
+            <phone>0987452291</phone>
+            <email>Pablo@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Sugar</name>
+            <surname>Joi</surname>
+            <phone>0664456873</phone>
+            <email>Suga@gmail.com</email>
+        </element>
+
+        <element>
+            <name>Keit</name>
+            <surname>Proflovski</surname>
+            <phone>0957478825</phone>
+            <email>KeitySecond@gmail.com</email>
+        </element>
+
+
+    </contact>
+</group>
+

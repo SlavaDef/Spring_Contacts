@@ -23,6 +23,7 @@
                             <li style="font-family:'Comic Sans MS';"><button type="button" id="delete_contact" class="btn btn-primary">Delete Contact</button></li>
                             <li style="font-family:'Comic Sans MS';"><button type="button" id="delete_group" class="btn btn-primary">Delete group</button></li>
                             <li style="font-family:'Comic Sans MS';"><button type="button" id="reset" class="btn btn-primary">Reset</button></li>
+                            <li style="font-family:'Comic Sans MS';"><button type="button" id="download" class="btn btn-primary">Download Contacts</button></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groups <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -105,6 +106,9 @@
             });
             $('#delete_group').click(function(){
                 window.location.href='/group/delete';
+            });
+            $('#download').click(function(){
+                window.location.href='/download';
             });
 
             $('#delete_contact').click(function(){

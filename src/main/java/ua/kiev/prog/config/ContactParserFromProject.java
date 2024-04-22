@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ContactParserFromProject {
 
-   Group group2 = new Group();
+ public Group group2 = new Group();
 
 
     public ContactParserFromProject() {
@@ -23,7 +23,7 @@ public class ContactParserFromProject {
     // метод для зчитування директорії
     public  Document buildDocument() throws Exception {
 
-        File file = new File("Contacts.xml");
+        File file = new File("contacts444.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         return dbFactory.newDocumentBuilder().parse(file);
     }

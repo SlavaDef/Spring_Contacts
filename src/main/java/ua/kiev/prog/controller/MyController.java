@@ -72,7 +72,7 @@ public class MyController {
             Model model) {
         Group group = (groupId != DEFAULT_GROUP_ID) ? contactService.findGroup(groupId) : null;
         if (page < 0) page = 0;
-         // вибірка контактів з конкретної групи
+        // вибірка контактів з конкретної групи
         List<Contact> contacts = contactService
                 .findByGroup(group, PageRequest.of(page, ITEMS_PER_PAGE, Sort.Direction.DESC, "id"));
 
@@ -137,9 +137,16 @@ public class MyController {
         return "redirect:/";
     }
 
-    @GetMapping("/xml")
-    public String xml() {
-        return "contacts22";
+    @GetMapping("/download")
+    public String download() {
+        return "download_page";
+    }
+
+    @PostMapping("/download")
+    public String download(Model model) throws Exception {
+        contactService.downloadGroup();
+
+        return "redirect:/";
     }
 
     private long getPageCount() { // метод рахує скільки треба сторінок
