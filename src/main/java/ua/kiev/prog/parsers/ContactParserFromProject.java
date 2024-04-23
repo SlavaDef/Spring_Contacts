@@ -1,5 +1,7 @@
-package ua.kiev.prog.config;
+package ua.kiev.prog.parsers;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -8,29 +10,36 @@ import ua.kiev.prog.models.Group;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Getter
+@Setter
 public class ContactParserFromProject {
 
- public Group group2 = new Group();
+    private final Group group2 = new Group();
 
+    private String newFile;
 
     public ContactParserFromProject() {
     }
 
     // метод для зчитування директорії
-    public  Document buildDocument() throws Exception {
+    public  Document buildDocument(String path) throws Exception {
 
-        File file = new File("contacts444.xml");
+        File file = new File(path);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         return dbFactory.newDocumentBuilder().parse(file);
     }
 
     // метод для парсингу саме контактів те що в тегу контакти
     public  List<Contact> parseContacts(Node contactsNode) {
-         List<Contact> contacts = new ArrayList<>();
+        List<Contact> contacts = new ArrayList<>();
         NodeList contactList = contactsNode.getChildNodes();
         // цей фор проходить всередині контактів і отримує всю інфу про поля контактів
         for (int i = 0; i < contactList.getLength(); i++) {
@@ -74,17 +83,17 @@ public class ContactParserFromProject {
             Contact contact = new Contact(name, surname, phone, email);
 
 
-             contacts.add(contact);
-             }
-             return contacts;
+            contacts.add(contact);
         }
+        return contacts;
+    }
 
 
     public  Node getContactNode(Document document) {
 
 
         try {
-            document = buildDocument();
+            document = buildDocument(newFile);
         } catch (Exception e) {
             System.out.println("Pars exeption " + e.toString());
             return null;
@@ -122,9 +131,46 @@ public class ContactParserFromProject {
             return null;
         }
 
-        group2.setName(groupName);
+        group2.setName(groupName+"1");
 
 
         return contactNode;
+    }
+
+    // метод читає з сервака json/xml фаіл і записує данні у корінь проєкта створюючи новий json/xml файл
+    public void universalParser(String urls) {
+        InputStream inputStream = null;
+        FileOutputStream outputStream = null;
+        newFile = "contacts222.xml";
+
+        try {
+            URL url = new URL(urls); // тут треба json чи xml на серваці
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            int responseCode = conn.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                inputStream = conn.getInputStream();
+
+                File file = new File(newFile); // новий файл куди записуємо or contacts333.json
+                outputStream = new FileOutputStream(file);
+
+                int bytesRead = -1; // -1 це кінець файлу зчитуємо дані по 1мб
+                byte[] buffer = new byte[1024];
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+            }
+
+        } catch (IOException e) {
+            System.out.println("Internet connection error" + e.toString());
+        } finally {
+            try {
+                inputStream.close();
+                outputStream.close();
+            } catch (IOException e) {
+                System.out.println("Error closing input stream" + e.toString());
+            }
+
+        }
     }
 }

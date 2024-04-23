@@ -7,9 +7,12 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ua.kiev.prog.models.Contact;
 import ua.kiev.prog.models.Group;
+import ua.kiev.prog.parsers.ContactParserFromProject;
 import ua.kiev.prog.servise.ContactService;
 
 import java.util.List;
+
+import static ua.kiev.prog.constants.Constants.CONTAKTS_URL2;
 
 // DB -> JDBC -> JPA(H): E..E -> DAO..DAO / Repository -> S..S -> C...C -> DTO -> View / React / Vue
 
@@ -30,17 +33,13 @@ public class AppConfig implements WebMvcConfigurer {
                 Group group = new Group("Test");
                 Contact contact;
                 ContactParserFromProject test = new ContactParserFromProject();
+                test.universalParser(CONTAKTS_URL2);
                 contactService.addGroup(group);
 
-              /*  for (int i = 0; i < 13; i++) {
-                    contact = new Contact(null, "Name" + i, "Surname" + i, "1234567" + i, "user" + i + "@test.com");
-                    contactService.addContact(contact);
-                } */
-
-                List<Contact> contacts = test.parseContacts(test.getContactNode(test.buildDocument()));
-                contactService.addGroup(test.group2);
+                List<Contact> contacts = test.parseContacts(test.getContactNode(test.buildDocument(test.getNewFile())));
+                contactService.addGroup(test.getGroup2());
                 for (Contact c : contacts) {
-                    contact = new Contact(test.group2, c.getName(),c.getSurname(),c.getPhone(),c.getEmail());
+                    contact = new Contact(test.getGroup2(), c.getName(),c.getSurname(),c.getPhone(),c.getEmail());
                     contactService.addContact(contact);
                 }
 

@@ -1,4 +1,4 @@
-package ua.kiev.prog.config;
+package ua.kiev.prog.parsers;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,13 +7,13 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static ua.kiev.prog.constants.Constants.CONTAKTS_URL;
+
 public class UniversalReader {
 
-    private static final String CONTAKTS_URL = "https://iportal.com.ua/wp-content/uploads/Contacts.xml";
-    private static final String CONTAKTS_URL2 = "https://senior-pomidor.com.ua/Contacts25.xml";
 
     // метод читає з сервака json/xml фаіл і записує данні у корінь проєкта створюючи новий json/xml файл
-    public static void universalParser(){
+    public static void universalParser() {
         InputStream inputStream = null;
         FileOutputStream outputStream = null;
 
@@ -47,8 +47,5 @@ public class UniversalReader {
 
         }
     }
-
-    public static void main(String[] args) {
-        universalParser();
-    }
 }
+

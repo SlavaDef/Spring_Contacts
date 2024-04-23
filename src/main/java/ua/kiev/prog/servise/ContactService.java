@@ -3,17 +3,16 @@ package ua.kiev.prog.servise;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.kiev.prog.config.ContactParserFromProject;
-import ua.kiev.prog.config.JsonParser;
+import ua.kiev.prog.parsers.ContactParserFromProject;
+import ua.kiev.prog.parsers.JsonParser;
 import ua.kiev.prog.models.Contact;
 import ua.kiev.prog.models.Group;
 import ua.kiev.prog.repo.ContactRepository;
 import ua.kiev.prog.repo.GroupRepository;
 
-import java.util.Collections;
 import java.util.List;
 
-import static ua.kiev.prog.config.UniversalReader.universalParser;
+import static ua.kiev.prog.parsers.UniversalReader.universalParser;
 
 // c -> s -> r -> DB
 
@@ -91,14 +90,15 @@ public class ContactService {
     }
 
     @Transactional
-    public void downloadGroup() throws Exception {
-        universalParser();
-        ContactParserFromProject test = new ContactParserFromProject();
+    public void downloadContacts(String url) throws Exception {
+        ContactParserFromProject parser = new ContactParserFromProject();
         Contact contact;
-        List<Contact> contacts = test.parseContacts(test.getContactNode(test.buildDocument()));
-        addGroup(test.group2);
+        parser.universalParser(url);
+        List<Contact> contacts =
+                parser.parseContacts(parser.getContactNode(parser.buildDocument(parser.getNewFile())));
+        addGroup(parser.getGroup2());
         for (Contact c : contacts) {
-            contact = new Contact(test.group2, c.getName(),c.getSurname(),c.getPhone(),c.getEmail());
+            contact = new Contact(parser.getGroup2(), c.getName(), c.getSurname(), c.getEmail(), c.getPhone());
             addContact(contact);
         }
     }

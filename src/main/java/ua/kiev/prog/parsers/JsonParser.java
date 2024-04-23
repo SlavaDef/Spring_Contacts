@@ -1,4 +1,4 @@
-package ua.kiev.prog.config;
+package ua.kiev.prog.parsers;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -7,8 +7,6 @@ import ua.kiev.prog.models.Contact;
 import ua.kiev.prog.models.Group;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 

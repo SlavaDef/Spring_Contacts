@@ -12,8 +12,8 @@
 <div class="container" >
     <form role="form" class="form-horizontal" action="/download" method="post">
 
-        <div class="form-group"><input type="submit" class="btn btn-success" value="Add students to contacts"></div>
-        <div class="form-group"><input type="submit" class="btn btn-success" value="Add workers to contacts"></div>
+        <div class="form-group"><input type="submit" class="btn btn-danger" value="Add students to contacts"></div>
+        <div class="form-group"><input type="submit" class="btn btn-danger" value="Add workers to contacts"></div>
     </form>
 </div>
 </body>

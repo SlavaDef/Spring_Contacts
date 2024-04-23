@@ -13,6 +13,8 @@ import ua.kiev.prog.models.Group;
 
 import java.util.List;
 
+import static ua.kiev.prog.constants.Constants.CONTAKTS_URL2;
+
 @Controller
 public class MyController {
     static final int DEFAULT_GROUP_ID = -1; //  id заглушка
@@ -138,13 +140,14 @@ public class MyController {
     }
 
     @GetMapping("/download")
-    public String download() {
+    public String downloadFrom() {
         return "download_page";
     }
 
     @PostMapping("/download")
-    public String download(Model model) throws Exception {
-        contactService.downloadGroup();
+    public String download(@RequestParam(required = false, defaultValue = CONTAKTS_URL2) String url) throws Exception {
+
+        contactService.downloadContacts(url);
 
         return "redirect:/";
     }
