@@ -1,16 +1,17 @@
 package ua.kiev.prog.parsers;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import static ua.kiev.prog.constants.Constants.CONTAKTS_URL;
+import static ua.kiev.prog.constants.Constants.CONTAKTS_URL2;
 
 public class UniversalReader {
 
+    List<String> red = new ArrayList<>();
 
     // метод читає з сервака json/xml фаіл і записує данні у корінь проєкта створюючи новий json/xml файл
     public static void universalParser() {
@@ -46,6 +47,32 @@ public class UniversalReader {
             }
 
         }
+    }
+
+
+    // метод зчитає з сайту xml файл і запише все у String чи StringBuilder
+    public String readerXml() throws Exception {
+        String res = null;
+        URL url = new URL(CONTAKTS_URL2);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+
+        try (BufferedReader reader = new BufferedReader
+                (new InputStreamReader(conn.getInputStream()))) {
+            // StringBuilder result = new StringBuilder();
+            for (String line; (line = reader.readLine()) != null; ) {
+                red.add(line);
+                res += line;
+                //   System.out.println(line);
+                //  result.append(line);
+            }
+            //  res = result.toString();
+        }
+
+        return res;
+        //   File file = new File(Url);
+        //  DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        //  return dbFactory.newDocumentBuilder().parse(file);
     }
 }
 

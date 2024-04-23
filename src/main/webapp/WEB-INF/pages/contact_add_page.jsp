@@ -17,9 +17,9 @@
                             </c:forEach>
                         </select>
                         <input class="form-control form-group" type="text" name="name" placeholder="Name">
-                        <input class="form-control form-group" type="text" name="surname" placeholder="Short description">
-                        <input class="form-control form-group" type="text" name="phone" placeholder="Long description">
-                        <input class="form-control form-group" type="text" name="email" placeholder="Phone">
+                        <input class="form-control form-group" type="text" name="surname" placeholder="Surname or organization">
+                        <input class="form-control form-group" type="text" name="phone" placeholder="Phone">
+                        <input class="form-control form-group" type="text" name="email" placeholder="Enter your email">
                     <input type="submit" class="btn btn-primary" value="Add">
             </form>
         </div>

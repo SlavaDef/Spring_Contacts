@@ -11,8 +11,8 @@ import ua.kiev.prog.repo.ContactRepository;
 import ua.kiev.prog.repo.GroupRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-import static ua.kiev.prog.parsers.UniversalReader.universalParser;
 
 // c -> s -> r -> DB
 
@@ -83,14 +83,18 @@ public class ContactService {
 
     @Transactional
     public void deleteGroup(String name) {
-        // groupRepository.deleteById(id);
-        // groupRepository.findByName(name);
+        if (groupRepository.findGroupByName(name) == null){
+            return;
+        }
         groupRepository.delete(groupRepository.findGroupByName(name));
 
     }
 
     @Transactional
     public void downloadContacts(String url) throws Exception {
+        if(url.length()<8){
+            return;
+        }
         ContactParserFromProject parser = new ContactParserFromProject();
         Contact contact;
         parser.universalParser(url);
@@ -102,6 +106,14 @@ public class ContactService {
             addContact(contact);
         }
     }
+
+    @Transactional
+    public void transfer(Long id, Group group) {
+        Optional<Contact> contact = contactRepository.findById(id);
+        contact.get().setGroup(group);
+        contactRepository.save(contact.get());
+    }
+
 
     @Transactional
     public void reset() {

@@ -13,6 +13,7 @@ import ua.kiev.prog.models.Group;
 
 import java.util.List;
 
+import static ua.kiev.prog.constants.Constants.CONTAKTS_URL;
 import static ua.kiev.prog.constants.Constants.CONTAKTS_URL2;
 
 @Controller
@@ -145,7 +146,8 @@ public class MyController {
     }
 
     @PostMapping("/download")
-    public String download(@RequestParam(required = false, defaultValue = CONTAKTS_URL2) String url) throws Exception {
+    public String download(@RequestParam (required = false, defaultValue = CONTAKTS_URL)
+                               String url) throws Exception {
 
         contactService.downloadContacts(url);
 
