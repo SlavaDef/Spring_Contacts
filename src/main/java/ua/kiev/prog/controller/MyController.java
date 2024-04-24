@@ -122,6 +122,25 @@ public class MyController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/contact_transfer_page")
+    public String contactTransferPage(Model model) {
+        // на сторінку передаємо список всіх груп
+        model.addAttribute("groups", contactService.findGroups());
+        return "contact_transfer_page";
+    }
+
+    @PostMapping("/contact/transfer")
+    public String transfer(@RequestParam(value = "group") long groupId,
+                           @RequestParam String name){
+        Group group = (groupId != DEFAULT_GROUP_ID) ? contactService.findGroup(groupId) : null;
+       Contact contact = contactService.transferByName(name);
+       contact.setGroup(group);
+        contactService.addContact(contact);
+        
+        return "redirect:/";
+
+    }
+
     @PostMapping(value = "/contact/add") //  long groupId id групи в яку передаємо контакт
     public String contactAdd(@RequestParam(value = "group") long groupId,
                              @RequestParam String name,

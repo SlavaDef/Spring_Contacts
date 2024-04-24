@@ -6,8 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ua.kiev.prog.models.Contact;
-import ua.kiev.prog.models.Group;
-import ua.kiev.prog.parsers.ContactParserFromProject;
 import ua.kiev.prog.servise.ContactService;
 
 import java.util.List;
@@ -36,9 +34,12 @@ public class AppConfig implements WebMvcConfigurer {
                 List<Contact> contacts;
 
                 contacts = parsejson(FAMILY);
+                if(contacts.size()>0){
+                    contactService.addGroup(contacts.get(0).getGroup());
+                }
 
                 for (Contact c : Objects.requireNonNull(contacts)) {
-                    contactService.addGroup(c.getGroup());
+
                     contact = new Contact(c.getGroup(), c.getName(), c.getSurname(),
                             c.getEmail(), c.getPhone());
 
@@ -47,9 +48,11 @@ public class AppConfig implements WebMvcConfigurer {
                 contacts.clear();
 
                 contacts = parsejson(SCHOOL);
+                if(contacts.size()>0){
+                    contactService.addGroup(contacts.get(0).getGroup());
+                }
 
                 for (Contact c2 : Objects.requireNonNull(contacts)) {
-                    contactService.addGroup(c2.getGroup());
                     contact = new Contact(c2.getGroup(), c2.getName(), c2.getSurname(),
                             c2.getEmail(), c2.getPhone());
 

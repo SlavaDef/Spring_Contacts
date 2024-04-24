@@ -112,10 +112,11 @@ public class ContactService {
     }
 
     @Transactional
-    public void transfer(Long id, Group group) {
-        Optional<Contact> contact = contactRepository.findById(id);
-        contact.get().setGroup(group);
-        contactRepository.save(contact.get());
+    public Contact transferByName(String name) {
+        Contact contact = contactRepository.findByName(name);
+        Long id = contact.getId();
+        contactRepository.deleteById(id);
+        return contact;
     }
 
 
@@ -129,12 +130,12 @@ public class ContactService {
 
         addGroup(group);
 
-    //    Group group1 = parsejson(SCHOOL).get(1).getGroup();
-       /// addGroup(group1);
         List<Contact> contacts = parsejson(SCHOOL);
-       // addGroup();
+        if (contacts.size() > 0) {
+            addGroup(contacts.get(0).getGroup());
+    }
         for (Contact c : Objects.requireNonNull(contacts)) {
-            addGroup(c.getGroup());
+          //  addGroup(c.getGroup());
             Contact contact1 = new Contact(c.getGroup(), c.getName(), c.getSurname(),
                     c.getPhone(), c.getEmail());
             addContact(contact1);

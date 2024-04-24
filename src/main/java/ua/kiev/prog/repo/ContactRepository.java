@@ -25,6 +25,8 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
     @Query("SELECT c FROM Contact c WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :pattern, '%'))")
     List<Contact> findByPattern(@Param("pattern") String pattern, Pageable pageable);
 
+    Contact findByName(String name);
+
     // List<Contact> findByNameOrEmailOrderById(String name, String email);
     // List<Contact> findByNameAndEmail(String name, String email);
 }

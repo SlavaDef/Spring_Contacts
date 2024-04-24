@@ -22,6 +22,7 @@
                             <li style="font-family:'Comic Sans MS';"><button type="button" id="add_group" class="btn btn-primary">Add Group</button></li>
                             <li style="font-family:'Comic Sans MS';"><button type="button" id="delete_contact" class="btn btn-primary">Delete Contact</button></li>
                             <li style="font-family:'Comic Sans MS';"><button type="button" id="delete_group" class="btn btn-primary">Delete group</button></li>
+                            <li style="font-family:'Comic Sans MS';"><button type="button" id="transfer_contact" class="btn btn-primary">Transfer</button></li>
                             <li style="font-family:'Comic Sans MS';"><button type="button" id="reset" class="btn btn-primary">Reset</button></li>
                             <li style="font-family:'Comic Sans MS';"><button type="button" id="download" class="btn btn-primary">Download Contacts</button></li>
                             <li class="dropdown">
@@ -99,6 +100,10 @@
 
             $('#add_group').click(function(){
                 window.location.href='/group_add_page';
+            });
+
+            $('#transfer_contact').click(function(){
+                window.location.href='/contact_transfer_page';
             });
 
             $('#reset').click(function(){
