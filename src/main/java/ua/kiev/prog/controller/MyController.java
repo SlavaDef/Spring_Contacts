@@ -10,16 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import ua.kiev.prog.servise.ContactService;
 import ua.kiev.prog.models.Contact;
 import ua.kiev.prog.models.Group;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-import static ua.kiev.prog.constants.Constants.CONTAKTS_URL;
-import static ua.kiev.prog.constants.Constants.CONTAKTS_URL2;
+import static ua.kiev.prog.constants.Constants.*;
 
 @Controller
 public class MyController {
-    static final int DEFAULT_GROUP_ID = -1; //  id заглушка
-    static final int ITEMS_PER_PAGE = 6; // скільки контактів виводити на одну сторінку
+
+    private static final Logger LOGGER = LogManager.getLogger(MyController.class);
+
+
 
     private final ContactService contactService;
 
@@ -146,9 +149,9 @@ public class MyController {
     }
 
     @PostMapping("/download")
-    public String download(@RequestParam (required = false, defaultValue = CONTAKTS_URL)
-                               String url) throws Exception {
-
+    public String download(@RequestParam(required = false, defaultValue = CONTAKTS_URL)
+                           String url) throws Exception {
+        LOGGER.info("URL: " + url);
         contactService.downloadContacts(url);
 
         return "redirect:/";

@@ -19,12 +19,12 @@ public class JsonParser {
     // public List<Contact> contactList = new ArrayList<>();
 
 // метод читає json фаіл з самого проєкту далі створюємо обьект контакт з отриманими полями
-    public List<Contact> parse() {
+    public static List<Contact> parsejson(String fileName) {
         Group group = new Group();
         List<Contact> contactList = new ArrayList<>();
         JSONParser parser = new JSONParser(); // залежність json-simple
 
-        try (FileReader fr = new FileReader("Contacts.json")) { // reading from file
+        try (FileReader fr = new FileReader(fileName)) { // reading from file "Contacts.json"
             JSONObject groupObject = (JSONObject) parser.parse(fr);
             String groupName = (String) groupObject.get(GROUP_NAME); // отримали імя групи groupObject.get
 

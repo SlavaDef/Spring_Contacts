@@ -11,7 +11,11 @@ import ua.kiev.prog.repo.ContactRepository;
 import ua.kiev.prog.repo.GroupRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+
+import static ua.kiev.prog.constants.Constants.SCHOOL;
+import static ua.kiev.prog.parsers.JsonParser.parsejson;
 
 
 // c -> s -> r -> DB
@@ -125,17 +129,14 @@ public class ContactService {
 
         addGroup(group);
 
-        /*  for (int i = 0; i < 13; i++) {
-            contact = new Contact(null, "Name" + i, "Surname" + i, "1234567" + i, "user" + i + "@test.com");
-            addContact(contact);
-        } */
-        JsonParser parser = new JsonParser();
-        Group group1 = parser.parse().get(1).getGroup();
-        addGroup(group1);
-        List<Contact> contacts = parser.parse();
-        for (Contact contac : contacts) {
-            Contact contact1 = new Contact(group1, contac.getName(), contac.getSurname(),
-                    contac.getPhone(), contac.getEmail());
+    //    Group group1 = parsejson(SCHOOL).get(1).getGroup();
+       /// addGroup(group1);
+        List<Contact> contacts = parsejson(SCHOOL);
+       // addGroup();
+        for (Contact c : Objects.requireNonNull(contacts)) {
+            addGroup(c.getGroup());
+            Contact contact1 = new Contact(c.getGroup(), c.getName(), c.getSurname(),
+                    c.getPhone(), c.getEmail());
             addContact(contact1);
         }
         for (int i = 0; i < 10; i++) {

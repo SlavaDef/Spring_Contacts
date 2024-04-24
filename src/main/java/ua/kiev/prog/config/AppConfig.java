@@ -11,8 +11,10 @@ import ua.kiev.prog.parsers.ContactParserFromProject;
 import ua.kiev.prog.servise.ContactService;
 
 import java.util.List;
+import java.util.Objects;
 
-import static ua.kiev.prog.constants.Constants.CONTAKTS_URL2;
+import static ua.kiev.prog.constants.Constants.*;
+import static ua.kiev.prog.parsers.JsonParser.parsejson;
 
 // DB -> JDBC -> JPA(H): E..E -> DAO..DAO / Repository -> S..S -> C...C -> DTO -> View / React / Vue
 
@@ -30,21 +32,27 @@ public class AppConfig implements WebMvcConfigurer {
         return new CommandLineRunner() {
             @Override
             public void run(String... strings) throws Exception {
-                Group group = new Group("Test");
                 Contact contact;
-                ContactParserFromProject test = new ContactParserFromProject();
-                test.universalParser(CONTAKTS_URL2);
-                contactService.addGroup(group);
+                List<Contact> contacts;
 
-                List<Contact> contacts = test.parseContacts(test.getContactNode(test.buildDocument(test.getNewFile())));
-                contactService.addGroup(test.getGroup2());
-                for (Contact c : contacts) {
-                    contact = new Contact(test.getGroup2(), c.getName(),c.getSurname(),c.getPhone(),c.getEmail());
+                contacts = parsejson(FAMILY);
+
+                for (Contact c : Objects.requireNonNull(contacts)) {
+                    contactService.addGroup(c.getGroup());
+                    contact = new Contact(c.getGroup(), c.getName(), c.getSurname(),
+                            c.getEmail(), c.getPhone());
+
                     contactService.addContact(contact);
                 }
+                contacts.clear();
 
-                for (int i = 0; i < 10; i++) {
-                    contact = new Contact(group, "Other" + i, "OtherSurname" + i, "7654321" + i, "user" + i + "@other.com");
+                contacts = parsejson(SCHOOL);
+
+                for (Contact c2 : Objects.requireNonNull(contacts)) {
+                    contactService.addGroup(c2.getGroup());
+                    contact = new Contact(c2.getGroup(), c2.getName(), c2.getSurname(),
+                            c2.getEmail(), c2.getPhone());
+
                     contactService.addContact(contact);
                 }
             }
