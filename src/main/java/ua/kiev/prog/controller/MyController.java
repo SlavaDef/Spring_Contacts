@@ -23,7 +23,6 @@ public class MyController {
     private static final Logger LOGGER = LogManager.getLogger(MyController.class);
 
 
-
     private final ContactService contactService;
 
     public MyController(ContactService contactService) {
@@ -98,7 +97,7 @@ public class MyController {
         model.addAttribute("allPages", getPageCount());
         model.addAttribute("contacts", contactService.findByPattern(pattern,
                 PageRequest.of(page, ITEMS_PER_PAGE, Sort.Direction.DESC, "id") /* HW */));
-
+       // дороблено відображення педжинаціїї
         return "index";
     }
 
@@ -122,21 +121,22 @@ public class MyController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    // повертає сторінку з вибором групи і імям користувача якого треба перенести в іншу групу
     @GetMapping("/contact_transfer_page")
     public String contactTransferPage(Model model) {
-        // на сторінку передаємо список всіх груп
         model.addAttribute("groups", contactService.findGroups());
         return "contact_transfer_page";
     }
 
+    // встановлення для збереженого контакту нової групи яку вибере користувача і збереження цього користувача в базу
     @PostMapping("/contact/transfer")
     public String transfer(@RequestParam(value = "group") long groupId,
-                           @RequestParam String name){
+                           @RequestParam String name) {
         Group group = (groupId != DEFAULT_GROUP_ID) ? contactService.findGroup(groupId) : null;
-       Contact contact = contactService.transferByName(name);
-       contact.setGroup(group);
+        Contact contact = contactService.transferByName(name);
+        contact.setGroup(group);
         contactService.addContact(contact);
-        
+
         return "redirect:/";
 
     }
@@ -156,18 +156,20 @@ public class MyController {
         return "redirect:/"; // перенаправлення на головну
     }
 
+    // додавання групи + редирект на головну
     @PostMapping(value = "/group/add")
     public String groupAdd(@RequestParam String name) {
         contactService.addGroup(new Group(name));
         return "redirect:/";
     }
 
+    // return page з силками на сервак з меню для url та двома кнопками
     @GetMapping("/download")
     public String downloadFrom() {
         return "download_page";
     }
 
-    @PostMapping("/download")
+    @PostMapping("/download") // TODO за замовчуванням повертається по кнопці тільки одна з двох груп
     public String download(@RequestParam(required = false, defaultValue = CONTAKTS_URL)
                            String url) throws Exception {
         LOGGER.info("URL: " + url);

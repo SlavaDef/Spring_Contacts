@@ -6,10 +6,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ua.kiev.prog.constants.Constants.CONTAKTS_URL;
-import static ua.kiev.prog.constants.Constants.CONTAKTS_URL2;
 
 public class UniversalReader {
+
+    public static final String CONTAKTS_URL = "https://iportal.com.ua/wp-content/uploads/Contacts.xml";
+    public static final String CONTAKTS_URL2 = "https://senior-pomidor.com.ua/Contacts25.xml";
 
     List<String> red = new ArrayList<>();
 

@@ -32,7 +32,7 @@ public class AppConfig implements WebMvcConfigurer {
             public void run(String... strings) throws Exception {
                 Contact contact;
                 List<Contact> contacts;
-
+                // додаємо контакти з json файлу
                 contacts = parsejson(FAMILY);
                 if(contacts.size()>0){
                     contactService.addGroup(contacts.get(0).getGroup());

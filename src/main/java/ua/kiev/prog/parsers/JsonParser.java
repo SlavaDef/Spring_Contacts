@@ -16,7 +16,6 @@ public class JsonParser {
     private static final String GROUP_NAME = "name";
     private static final String CONTACTS_ARR = "contacts";
 
-    // public List<Contact> contactList = new ArrayList<>();
 
 // метод читає json фаіл з самого проєкту далі створюємо обьект контакт з отриманими полями
     public static List<Contact> parsejson(String fileName) {
@@ -38,9 +37,7 @@ public class JsonParser {
                 String email = (String) contactObject.get("email");
                 Contact contact1 = new Contact(group, nameCon, surname, phone, email);
                 contactList.add(contact1);
-
             }
-
             // group.setContacts(contactList);
             return contactList;
 
@@ -49,5 +46,4 @@ public class JsonParser {
         }
         return null;
     }
-
 }

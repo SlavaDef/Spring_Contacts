@@ -4,7 +4,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.kiev.prog.parsers.ContactParserFromProject;
-import ua.kiev.prog.parsers.JsonParser;
 import ua.kiev.prog.models.Contact;
 import ua.kiev.prog.models.Group;
 import ua.kiev.prog.repo.ContactRepository;
@@ -12,7 +11,6 @@ import ua.kiev.prog.repo.GroupRepository;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import static ua.kiev.prog.constants.Constants.SCHOOL;
 import static ua.kiev.prog.parsers.JsonParser.parsejson;
@@ -93,7 +91,8 @@ public class ContactService {
         groupRepository.delete(groupRepository.findGroupByName(name));
 
     }
-
+// парсинг xml документа з серваку за заданим урл з наступним створенням групи і контактів в ній(при умові такоїж форми)
+    // xml спочатку зберігається в проєкті потім парситься і додається в базу
     @Transactional
     public void downloadContacts(String url) throws Exception {
         if(url.length()<8){
@@ -110,12 +109,11 @@ public class ContactService {
             addContact(contact);
         }
     }
-
+    // сервіс для переносу контакту в іншу групу (збереження контакту та видалення його із групи)
     @Transactional
     public Contact transferByName(String name) {
         Contact contact = contactRepository.findByName(name);
-        Long id = contact.getId();
-        contactRepository.deleteById(id);
+        contactRepository.deleteById(contact.getId());
         return contact;
     }
 
@@ -129,7 +127,7 @@ public class ContactService {
         Contact contact;
 
         addGroup(group);
-
+     // після ресет тут парситься json файл і додаються з нього контакти в базу
         List<Contact> contacts = parsejson(SCHOOL);
         if (contacts.size() > 0) {
             addGroup(contacts.get(0).getGroup());
