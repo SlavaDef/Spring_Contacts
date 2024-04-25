@@ -172,6 +172,7 @@ public class MyController {
     @PostMapping("/download") // TODO за замовчуванням повертається по кнопці тільки одна з двох груп
     public String download(@RequestParam(required = false, defaultValue = CONTAKTS_URL)
                            String url) throws Exception {
+
         LOGGER.info("URL: " + url);
         contactService.downloadContacts(url);
 

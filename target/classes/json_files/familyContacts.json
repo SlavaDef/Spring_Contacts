@@ -1,0 +1,50 @@
+{
+  "name": "Family group",
+  "contacts" : [
+    {
+      "name" : "Dad",
+      "surname" : "F",
+      "phone" : "033-223-12-22",
+      "email" : "DF@gmail.com"
+    },
+    {
+      "name" : "Mam",
+      "surname" : "F",
+      "phone" : "033-223-12-23",
+      "email" : "MO@gmail.com"
+    },
+    {
+      "name" : "Uncle",
+      "surname" : "D",
+      "phone" : "033-244-44-22",
+      "email" : "Garry@gmail.com"
+    },
+    {
+      "name" : "Brother",
+      "surname" : "D",
+      "phone" : "033-221-66-22",
+      "email" : "Br@gmail.com"
+    },
+    {
+      "name" : "Sister",
+      "surname" : "D",
+      "phone" : "033-227-12-77",
+      "email" : "Ar_Ag@gmail.com"
+    },
+
+    {
+      "name" : "Grandfather",
+      "surname" : "J",
+      "phone" : "050-223-12-24",
+      "email" : "Grand_F@gmail.com"
+    },
+    {
+      "name" : "GrandMother",
+      "surname" : "J",
+      "phone" : "050-228-89-02",
+      "email" : "Den@gmail.com"
+    }
+
+  ]
+
+}

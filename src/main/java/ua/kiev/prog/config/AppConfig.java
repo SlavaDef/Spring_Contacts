@@ -40,8 +40,8 @@ public class AppConfig implements WebMvcConfigurer {
 
                 for (Contact c : Objects.requireNonNull(contacts)) {
 
-                    contact = new Contact(c.getGroup(), c.getName(), c.getSurname(),
-                            c.getEmail(), c.getPhone());
+                    contact = new Contact(c.getGroup(), c.getName(), c.getSurname(), c.getPhone(),
+                            c.getEmail() );
 
                     contactService.addContact(contact);
                 }
@@ -54,7 +54,7 @@ public class AppConfig implements WebMvcConfigurer {
 
                 for (Contact c2 : Objects.requireNonNull(contacts)) {
                     contact = new Contact(c2.getGroup(), c2.getName(), c2.getSurname(),
-                            c2.getEmail(), c2.getPhone());
+                            c2.getPhone(), c2.getEmail());
 
                     contactService.addContact(contact);
                 }

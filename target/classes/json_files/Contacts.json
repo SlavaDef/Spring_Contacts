@@ -1,0 +1,36 @@
+{
+  "name": "Work group",
+  "contacts" : [
+    {
+      "name" : "John",
+      "surname" : "Dj",
+      "phone" : "0553322",
+      "email" : "J@gmail.com"
+    },
+    {
+      "name" : "Ann",
+      "surname" : "Sidni",
+      "phone" : "0553355",
+      "email" : "A_S@gmail.com"
+    },
+    {
+      "name" : "Bob",
+      "surname" : "Travolta",
+      "phone" : "0553311",
+      "email" : "Garry@gmail.com"
+    },
+    {
+      "name" : "Deni",
+      "surname" : "K",
+      "phone" : "0556335",
+      "email" : "Den@gmail.com"
+    },
+    {
+      "name" : "Armando",
+      "surname" : "Aguero",
+      "phone" : "0554400",
+      "email" : "Ar_Ag@gmail.com"
+    }
+  ]
+
+}

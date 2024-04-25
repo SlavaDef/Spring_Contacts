@@ -18,6 +18,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ua.kiev.prog.constants.Constants.NEW_XML_FILE;
+
 @Getter
 @Setter
 public class ContactParserFromProject {
@@ -141,7 +143,7 @@ public class ContactParserFromProject {
     public void universalParser(String urls) {
         InputStream inputStream = null;
         FileOutputStream outputStream = null;
-        newFile = "contacts222.xml";
+        newFile = NEW_XML_FILE;
 
         try {
             URL url = new URL(urls); // тут треба json чи xml на серваці

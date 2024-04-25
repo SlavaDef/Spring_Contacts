@@ -1,0 +1,61 @@
+{
+  "name": "School group",
+  "contacts" : [
+    {
+      "name" : "John",
+      "surname" : "Dj",
+      "phone" : "0553322",
+      "email" : "J@gmail.com"
+    },
+    {
+      "name" : "Ann",
+      "surname" : "Sidni",
+      "phone" : "0553355",
+      "email" : "A_S@gmail.com"
+    },
+    {
+      "name" : "Bob",
+      "surname" : "Travolta",
+      "phone" : "0553311",
+      "email" : "Garry@gmail.com"
+    },
+    {
+      "name" : "Deni",
+      "surname" : "K",
+      "phone" : "0556335",
+      "email" : "Den@gmail.com"
+    },
+    {
+      "name" : "Armando",
+      "surname" : "Aguero",
+      "phone" : "0554400",
+      "email" : "Ar_Ag@gmail.com"
+    },
+
+    {
+      "name" : "Sonia",
+      "surname" : "Williams",
+      "phone" : "0553323",
+      "email" : "Sanny@gmail.com"
+    },
+    {
+      "name" : "Millena",
+      "surname" : "Chao",
+      "phone" : "0556339",
+      "email" : "Den@gmail.com"
+    },
+    {
+      "name" : "Tom",
+      "surname" : "Soer",
+      "phone" : "0556389",
+      "email" : "Garry@gmail.com"
+    },
+    {
+      "name" : "Juli",
+      "surname" : "Roberds",
+      "phone" : "0551331",
+      "email" : "Den@gmail.com"
+    }
+  ]
+
+}
